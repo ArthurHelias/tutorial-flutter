@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_flutter/models/catalog_widget.dart';
+import 'package:tutorial_flutter/models/catalog_model.dart';
 
-class ItemWidget extends StatelessWidget {
-  final Item item;
+class FilmWidget extends StatelessWidget {
+  final Film film;
 
-  const ItemWidget({Key? key, required this.item}) : super(key: key);
+  const FilmWidget({Key? key, required this.film}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,30 +12,30 @@ class ItemWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Card(
         elevation: 0,
-        color: hexToColor(item.color),
+        color: hexToColor(film.color),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
             leading: Image.network(
-              item.image
+              film.image
             ),
             title: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
-                  child: Text(item.title,
+                  child: Text(film.title,
                       style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 18))),
             ),
             subtitle: Center(
-                child: Text(item.genre,
+                child: Text(film.type,
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 15))),
             trailing: Text(
-              item.year,
+              film.year,
               style: const TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.w900,

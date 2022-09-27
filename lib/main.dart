@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_flutter/models/catalog_widget.dart';
-import 'package:tutorial_flutter/widgets/item_widget.dart';
+import 'package:tutorial_flutter/models/catalog_model.dart';
+import 'package:tutorial_flutter/widgets/film_widget.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const FilmCatalogApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class FilmCatalogApp extends StatelessWidget {
+  const FilmCatalogApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Tutorial Flutter",
+      theme: new ThemeData(scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Tutorial ListView"),
+          centerTitle: true,
+          backgroundColor: Colors.amber,
+          title: const Text("Films' Catalog"),
         ),
         body: ListView.builder(
-            itemCount: CatalogModel.items.length,
+            itemCount: CatalogModel.films.length,
             itemBuilder: (context, index) {
-              return ItemWidget(item: CatalogModel.items[index]);
+              return FilmWidget(film: CatalogModel.films[index]);
             }),
       ),
     );
