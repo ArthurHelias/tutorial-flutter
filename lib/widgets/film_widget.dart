@@ -24,20 +24,20 @@ class FilmWidget extends StatelessWidget {
               child: Center(
                   child: Text(film.title,
                       style: const TextStyle(
-                          color: Colors.black,
+                          color: Color(0xff2b2d42),
                           fontWeight: FontWeight.bold,
                           fontSize: 18))),
             ),
             subtitle: Center(
                 child: Text(film.type,
                     style: const TextStyle(
-                        color: Colors.white,
+                        color: Color(0xff8d99ae),
                         fontWeight: FontWeight.bold,
                         fontSize: 15))),
             trailing: Text(
               film.year,
               style: const TextStyle(
-                  color: Colors.black87,
+                  color: Color(0xff2b2d42),
                   fontWeight: FontWeight.w900,
                   fontSize: 20),
             ),

@@ -7,31 +7,56 @@ import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
 
 void main() {
-  runApp(FilmCatalogApp());
+  runApp(MyApp());
 }
 
-class FilmCatalogApp extends StatelessWidget {
-  FilmCatalogApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => MaterialApp(home: MyList());
+}
 
+class MyList extends StatefulWidget {
+  @override
+  FilmCatalogApp createState() => FilmCatalogApp();
+}
+
+class FilmCatalogApp extends State<MyList> {
   final String apikey = "fa35d40a";
   final String urlRequest = "omdbapi.com";
   String data = "";
   String title = "";
+  List<Film> films = [];
+  List<Film> newFilms = [];
   TextEditingController myController = TextEditingController();
 
-  void sendRequest() {
+  void sendRequest(String title) {
     Future<void> request() async {
       final client = RetryClient(http.Client());
       try {
         title = myController.text.toString();
-        var requestUrl = Uri.parse("https://omdbapi.com/?apikey=$apikey&s=$title");
+        var requestUrl =
+            Uri.parse("https://omdbapi.com/?apikey=$apikey&s=$title");
         var response = await http.get(requestUrl);
         var json = jsonDecode(response.body);
+        newFilms.clear();
 
         //data = json.toString();
         if (json['Response'] == 'True') {
-          var list = json['Search'] as List<dynamic>;
-          data = "List  =  ${list.length}";
+          var listeFilms = json['Search'] as List<dynamic>;
+          data = "List  =  ${listeFilms.length}";
+          print(data);
+          for (int i = 0; i < listeFilms.length; i++) {
+            var film = listeFilms[i];
+            Film newFilm = Film(
+                id: i,
+                title: film['Title'],
+                type: film['Type'],
+                year: film['Year'],
+                color: "#dad7cd",
+                image: film['Poster']);
+            newFilms.add(newFilm);
+          }
+          print(json.toString());
         } else if (json['Error'] != null) {
           data = "Error : ${json['Error']}";
           print(data);
@@ -39,59 +64,65 @@ class FilmCatalogApp extends StatelessWidget {
           data = "Error in api request";
         }
         //data = await client.read(Uri.https(requestUrl.toString(), ""));
+        print(data);
       } finally {
         client.close();
       }
     }
+
     request();
+    print(newFilms.length);
+    refresh();
   }
 
-@override
-Widget build(BuildContext context) {
-  return MaterialApp(
-    title: "Films' Catalog",
-    theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-    debugShowCheckedModeBanner: false,
+  Future refresh() async {
+    films = newFilms;
+    setState(() {
+      films = newFilms;
+    });
+  }
 
-
-    home: Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.amber,
-        title: const Text("Films' Catalog"),
-      ),
-      body: Center(
-        child: TextField(
-          controller: myController,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Title',
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Films' Catalog",
+      theme: ThemeData(scaffoldBackgroundColor: Color(0xffedede9)),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: Color(0xffd90429),
+            title: const Text("Films' Catalog"),
           ),
-        ),
-      )
-    ),
-  );
-}}
-
-
-@override
-Widget build(BuildContext context) {
-  return MaterialApp(
-    title: "Tutorial Flutter",
-    theme: new ThemeData(scaffoldBackgroundColor: Colors.white),
-    debugShowCheckedModeBanner: false,
-    home: Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.amber,
-        title: const Text("Films' Catalog"),
-      ),
-      body: ListView.builder(
-          itemCount: CatalogModel.films.length,
-          itemBuilder: (context, index) {
-            return FilmWidget(film: CatalogModel.films[index]);
-          }),
-    ),
-  );
-}
+          body: Center(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextField(
+                    controller: myController,
+                    textInputAction: TextInputAction.go,
+                    onSubmitted: sendRequest,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Title',
+                    ),
+                  ),
+                ),
+                RefreshIndicator(
+                    child: Container(
+                      height: 550,
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: films.length,
+                          itemBuilder: (context, index) {
+                            return FilmWidget(film: films[index]);
+                          }),
+                    ),
+                    onRefresh: refresh),
+              ],
+            ),
+          )),
+    );
+  }
 }
