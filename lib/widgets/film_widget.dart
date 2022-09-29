@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../dto/Film.dart';
 
+import '../dto/film.dart';
+
 class FilmWidget extends StatelessWidget {
   final Film film;
 
