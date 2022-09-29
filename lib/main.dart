@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_flutter/models/catalog_model.dart';
-import 'package:tutorial_flutter/widgets/film_widget.dart';
+import 'dto/film.dart';
+import 'screens/info_film_screen.dart';
 
 void main() {
   runApp(const FilmCatalogApp());
@@ -11,22 +11,18 @@ class FilmCatalogApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final film = Film(
+        id: 10,
+        title: "irjrjsg",
+        type: "series",
+        year: "2020",
+        color: "#d62828",
+        image:
+            "https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive-960x540.jpg");
     return MaterialApp(
-      title: "Films' Catalog",
-      theme: new ThemeData(scaffoldBackgroundColor: Colors.white),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.amber,
-          title: const Text("Films' Catalog"),
-        ),
-        body: ListView.builder(
-            itemCount: CatalogModel.films.length,
-            itemBuilder: (context, index) {
-              return FilmWidget(film: CatalogModel.films[index]);
-            }),
-      ),
-    );
+        title: "Film Info",
+        theme: new ThemeData(scaffoldBackgroundColor: Colors.white),
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(body: InfoFilmScreen(film: film)));
   }
 }
