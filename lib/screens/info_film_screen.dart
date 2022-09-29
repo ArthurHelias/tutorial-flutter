@@ -13,18 +13,45 @@ class InfoFilmScreen extends StatelessWidget {
       title: film.title,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () => Navigator.of(context).pop(),
+          appBar: AppBar(
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              centerTitle: true,
+              backgroundColor: Color(0xffd90429),
+              title: Text(film.title)),
+          body: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Center(
+              child: Column(
+                children: [
+                  Row(children: [
+                    Container(
+                        margin: const EdgeInsets.all(10.0),
+                        child: Image.network(
+                            "https://www.ugc.fr/dynamique/films/05/8005/fr/poster/large/2146702_5.jpg"),
+                        height: 200,
+                        width: 100),
+                    Container(
+                        margin: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(film.toString(),
+                            style: TextStyle(color: Colors.white)),
+                        color: hexToColor(film.color),
+                        height: 180,
+                        width: 200)
+                  ]),
+                  Container(
+                      child: Text(film.type, style: TextStyle(color: Colors.white)),
+                      color: hexToColor(film.color),
+                      padding: const EdgeInsets.all(10.0),
+                      height: 160,
+                      width: 330),
+                ],
+              ),
             ),
-            centerTitle: true,
-            backgroundColor: Color(0xffd90429),
-            title: Text(film.title)),
-        body: Center(
-            child: Text(film.toString(),
-                style: TextStyle(backgroundColor: hexToColor(film.color)))),
-      ),
+          )),
     );
   }
 
