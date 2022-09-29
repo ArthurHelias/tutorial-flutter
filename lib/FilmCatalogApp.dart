@@ -41,11 +41,13 @@ class FilmCatalogApp extends State<MyList> {
           }
           newFilms.sort((a, b) {
             try {
-              if (int.parse(a.year) > int.parse(b.year)) {
-                return 1;
+              int c = int.parse(a.year.substring(1, 4));
+              int d = int.parse(b.year.substring(1, 4));
+              if (c < d) {
+                return -1;
               }
-              return -1;
-            }catch (e){
+              return 1;
+            } catch (e) {
               return 0;
             }
           });
@@ -63,6 +65,7 @@ class FilmCatalogApp extends State<MyList> {
         client.close();
       }
     }
+
     request();
     print(newFilms.length);
   }
