@@ -16,8 +16,9 @@ class FilmWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
-            leading: Image.network(
-              film.image
+            leading: Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: Image.network(film.image),
             ),
             title: Padding(
               padding: const EdgeInsets.all(8.0),
