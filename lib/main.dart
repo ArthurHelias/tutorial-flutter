@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_flutter/FilmCatalogApp.dart';
+import 'package:tutorial_flutter/film_catalog_app.dart';
 
 void main() {
   runApp(MyApp());

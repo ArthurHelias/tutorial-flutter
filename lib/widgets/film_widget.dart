@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_flutter/models/catalog_model.dart';
+
+import '../dto/Film.dart';
 
 class FilmWidget extends StatelessWidget {
   final Film film;

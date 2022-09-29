@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:tutorial_flutter/models/catalog_model.dart';
 import 'package:tutorial_flutter/widgets/film_widget.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
 
+import 'dto/Film.dart';
 import 'main.dart';
 
 class FilmCatalogApp extends State<MyList> {
