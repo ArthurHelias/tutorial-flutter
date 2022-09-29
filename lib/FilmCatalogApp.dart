@@ -28,22 +28,31 @@ class FilmCatalogApp extends State<MyList> {
 
         if (json['Response'] == 'True') {
           var listeFilms = json['Search'] as List<dynamic>;
-          for (int i = 0; i < listeFilms.length; i++) {
-            var film = listeFilms[i];
+          for (var film in listeFilms) {
+            String type = film['Type'];
+            var color;
+            if (type == "series"){
+              color = "#a8dadc";
+            } else if (type == "game"){
+              color = "#f6bd60";
+            }else {
+              color = "#fcd5ce";
+            }
+
             Film newFilm = Film(
-                id: i,
+                id: film['imdbID'],
                 title: film['Title'],
-                type: film['Type'],
+                type: type.substring(0, 1).toUpperCase() + type.substring(1),
                 year: film['Year'],
-                color: "#dad7cd",
+                color: color,
                 image: film['Poster']);
             newFilms.add(newFilm);
           }
           newFilms.sort((a, b) {
             try {
-              int c = int.parse(a.year.substring(1, 4));
-              int d = int.parse(b.year.substring(1, 4));
-              if (c < d) {
+              int c = int.parse(a.year.substring(0, 4));
+              int d = int.parse(b.year.substring(0, 4));
+              if (c > d) {
                 return -1;
               }
               return 1;
@@ -105,7 +114,7 @@ class FilmCatalogApp extends State<MyList> {
                 ),
                 RefreshIndicator(
                     child: Container(
-                      height: 550,
+                      height: 700,
                       child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: films.length,
