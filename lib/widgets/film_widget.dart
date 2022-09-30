@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../dto/Film.dart';
-
 import '../dto/film.dart';
+import '../screens/info_film_screen.dart';
 
 class FilmWidget extends StatelessWidget {
   final Film film;
@@ -19,6 +18,14 @@ class FilmWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => InfoFilmScreen(film: film),
+                ),
+              );
+            },
             leading: Padding(
               padding: const EdgeInsets.all(0.0),
               child: Image.network(film.image),

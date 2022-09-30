@@ -30,7 +30,7 @@ class InfoFilmScreen extends StatelessWidget {
                     Container(
                         margin: const EdgeInsets.all(10.0),
                         child: Image.network(
-                            "https://www.ugc.fr/dynamique/films/05/8005/fr/poster/large/2146702_5.jpg"),
+                            film.image),
                         height: 200,
                         width: 100),
                     Container(

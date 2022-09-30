@@ -4,10 +4,10 @@ import 'package:tutorial_flutter/widgets/film_widget.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
 
-import 'dto/Film.dart';
-import 'main.dart';
+import '../dto/film.dart';
+import '../main.dart';
 
-class FilmCatalogApp extends State<MyList> {
+class FilmCatalogScreen extends State<MyList> {
   final String apikey = "fa35d40a";
   final String urlRequest = "omdbapi.com";
   String data = "";
