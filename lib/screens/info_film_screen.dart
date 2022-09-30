@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../dto/film.dart';
+import 'package:tutorial_flutter/dto/film.dart';
 
 class InfoFilmScreen extends StatelessWidget {
   final Film film;
@@ -29,8 +28,7 @@ class InfoFilmScreen extends StatelessWidget {
                   Row(children: [
                     Container(
                         margin: const EdgeInsets.all(10.0),
-                        child: Image.network(
-                            film.image),
+                        child: Image.network(film.image),
                         height: 200,
                         width: 100),
                     Container(
@@ -43,7 +41,8 @@ class InfoFilmScreen extends StatelessWidget {
                         width: 200)
                   ]),
                   Container(
-                      child: Text(film.type, style: TextStyle(color: Colors.white)),
+                      child: Text(film.type,
+                          style: TextStyle(color: Color(0xff2b2d42))),
                       color: hexToColor(film.color),
                       padding: const EdgeInsets.all(10.0),
                       height: 160,

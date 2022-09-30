@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:tutorial_flutter/widgets/film_widget.dart';
+import 'package:tutorial_flutter/dto/film.dart';
+import 'package:tutorial_flutter/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
-
-import '../dto/film.dart';
-import '../main.dart';
 
 class FilmCatalogScreen extends State<MyList> {
   final String apikey = "fa35d40a";
@@ -31,11 +30,11 @@ class FilmCatalogScreen extends State<MyList> {
           for (var film in listeFilms) {
             String type = film['Type'];
             var color;
-            if (type == "series"){
+            if (type == "series") {
               color = "#a8dadc";
-            } else if (type == "game"){
+            } else if (type == "game") {
               color = "#f6bd60";
-            }else {
+            } else {
               color = "#fcd5ce";
             }
 
@@ -66,7 +65,6 @@ class FilmCatalogScreen extends State<MyList> {
         } else {
           data = "Error in api request";
         }
-        print(data);
       } catch (ex) {
         data = "Internet error : " + ex.toString();
       } finally {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../dto/film.dart';
-import '../screens/info_film_screen.dart';
+import 'package:tutorial_flutter/dto/film.dart';
+import 'package:tutorial_flutter/screens/info_film_screen.dart';
 
 class FilmWidget extends StatelessWidget {
   final Film film;
