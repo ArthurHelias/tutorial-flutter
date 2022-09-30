@@ -20,12 +20,17 @@ class InfoFilmScreen extends StatelessWidget {
               ),
               centerTitle: true,
               backgroundColor: Color(0xffd90429),
-              title: Text(film.title)),
+              title: Text("Film's Details")),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Center(
               child: Column(
                 children: [
+                  Text(film.title,
+                      style: const TextStyle(
+                          color: Color(0xff2b2d42),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 26)),
                   Row(children: [
                     Container(
                         margin: const EdgeInsets.all(10.0),

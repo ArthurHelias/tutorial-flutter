@@ -5,6 +5,7 @@ import 'package:tutorial_flutter/dto/film.dart';
 import 'package:tutorial_flutter/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
+import 'package:tutorial_flutter/request.dart';
 
 class FilmCatalogScreen extends State<MyList> {
   final String apikey = "fa35d40a";
@@ -18,35 +19,17 @@ class FilmCatalogScreen extends State<MyList> {
     Future<void> request() async {
       final client = RetryClient(http.Client());
       try {
-        title = myController.text.toString();
         var requestUrl =
             Uri.parse("https://omdbapi.com/?apikey=$apikey&s=$title");
         var response = await http.get(requestUrl);
         var json = jsonDecode(response.body);
         newFilms.clear();
-
         if (json['Response'] == 'True') {
           var listeFilms = json['Search'] as List<dynamic>;
           for (var film in listeFilms) {
-            String type = film['Type'];
-            var color;
-            if (type == "series") {
-              color = "#a8dadc";
-            } else if (type == "game") {
-              color = "#f6bd60";
-            } else {
-              color = "#fcd5ce";
-            }
-
-            Film newFilm = Film(
-                id: film['imdbID'],
-                title: film['Title'],
-                type: type.substring(0, 1).toUpperCase() + type.substring(1),
-                year: film['Year'],
-                color: color,
-                image: film['Poster']);
-            newFilms.add(newFilm);
+            newFilms.add(Request.jsonToFilm(film));
           }
+
           newFilms.sort((a, b) {
             try {
               int c = int.parse(a.year.substring(0, 4));
