@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_flutter/models/catalog_model.dart';
+import 'package:tutorial_flutter/models/Film.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class FilmWidget extends StatelessWidget {
   final Film film;
@@ -18,7 +19,11 @@ class FilmWidget extends StatelessWidget {
           child: ListTile(
             leading: Padding(
               padding: const EdgeInsets.all(0.0),
-              child: Image.network(film.image),
+              child: CachedNetworkImage(
+                imageUrl: film.image,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
             title: Padding(
               padding: const EdgeInsets.all(8.0),

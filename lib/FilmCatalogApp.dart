@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:tutorial_flutter/models/catalog_model.dart';
+import 'package:tutorial_flutter/models/Film.dart';
 import 'package:tutorial_flutter/widgets/film_widget.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
@@ -114,7 +114,7 @@ class FilmCatalogApp extends State<MyList> {
                 ),
                 RefreshIndicator(
                     child: Container(
-                      height: 700,
+                      height: 550,
                       child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: films.length,
