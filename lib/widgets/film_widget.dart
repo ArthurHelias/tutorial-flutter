@@ -31,7 +31,7 @@ class FilmWidget extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: film.image,
                 placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                errorWidget: (context, url, error) => Image.asset("assets/images/error.png"),
               ),
             ),
             title: Padding(

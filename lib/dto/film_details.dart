@@ -1,4 +1,5 @@
-import 'Film.dart';
+
+import 'package:tutorial_flutter/dto/film.dart';
 
 class FilmDetails extends Film {
   final String rated;

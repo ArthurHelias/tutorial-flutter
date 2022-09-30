@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_flutter/dto/film.dart';
 
@@ -28,14 +29,17 @@ class InfoFilmScreen extends StatelessWidget {
                   Row(children: [
                     Container(
                         margin: const EdgeInsets.all(10.0),
-                        child: Image.network(film.image),
+                        child: CachedNetworkImage(
+                          imageUrl: film.image,
+                          errorWidget: (context, url, error) => Image.asset("assets/images/error.png"),
+                        ),
                         height: 200,
                         width: 100),
                     Container(
                         margin: const EdgeInsets.all(10.0),
                         padding: const EdgeInsets.all(10.0),
                         child: Text(film.toString(),
-                            style: TextStyle(color: Colors.white)),
+                            style: TextStyle(color: Color(0xff2b2d42))),
                         color: hexToColor(film.color),
                         height: 180,
                         width: 200)

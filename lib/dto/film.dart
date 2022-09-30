@@ -1,5 +1,5 @@
 class Film {
-  final int id;
+  final String id;
   final String title;
   final String type;
   final String year;
