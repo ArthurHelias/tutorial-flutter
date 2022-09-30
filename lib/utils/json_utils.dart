@@ -1,6 +1,6 @@
-import 'dto/film.dart';
+import 'package:tutorial_flutter/dto/film.dart';
 
-class Request {
+class JsonUtils {
   static Film jsonToFilm(var filmJson) {
     String type = filmJson['Type'];
     var color;

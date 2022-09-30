@@ -5,7 +5,7 @@ import 'package:tutorial_flutter/dto/film.dart';
 import 'package:tutorial_flutter/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
-import 'package:tutorial_flutter/request.dart';
+import 'package:tutorial_flutter/utils/json_utils.dart';
 
 class FilmCatalogScreen extends State<MyList> {
   final String apikey = "fa35d40a";
@@ -27,7 +27,7 @@ class FilmCatalogScreen extends State<MyList> {
         if (json['Response'] == 'True') {
           var listeFilms = json['Search'] as List<dynamic>;
           for (var film in listeFilms) {
-            newFilms.add(Request.jsonToFilm(film));
+            newFilms.add(JsonUtils.jsonToFilm(film));
           }
 
           newFilms.sort((a, b) {
