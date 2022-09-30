@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-
-import 'items/heading_item.dart';
-import 'items/list_item.dart';
-import 'items/message_item.dart';
-import 'tutorial_flutter.dart';
+import 'package:tutorial_flutter/screens/film_catalog_screen.dart';
 
 void main() {
-  runApp(
-    TutorialFlutter(
-      items: List<ListItem>.generate(
-        50,
-        (i) => i % 6 == 0
-            ? HeadingItem('Heading $i')
-            : MessageItem('Sender $i', 'Message body $i'),
-      ),
-    ),
-  );
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => MaterialApp(home: MyList());
+}
+
+class MyList extends StatefulWidget {
+  @override
+  FilmCatalogScreen createState() => FilmCatalogScreen();
 }
