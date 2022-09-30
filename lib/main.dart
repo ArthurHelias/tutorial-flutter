@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_flutter/FilmCatalogApp.dart';
+import 'package:tutorial_flutter/screens/film_catalog_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,5 +12,5 @@ class MyApp extends StatelessWidget {
 
 class MyList extends StatefulWidget {
   @override
-  FilmCatalogApp createState() => FilmCatalogApp();
+  FilmCatalogScreen createState() => FilmCatalogScreen();
 }

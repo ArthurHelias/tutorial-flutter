@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:tutorial_flutter/models/Film.dart';
 import 'package:tutorial_flutter/widgets/film_widget.dart';
+import 'package:tutorial_flutter/dto/film.dart';
+import 'package:tutorial_flutter/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
 
-import 'main.dart';
-
-class FilmCatalogApp extends State<MyList> {
+class FilmCatalogScreen extends State<MyList> {
   final String apikey = "fa35d40a";
   final String urlRequest = "omdbapi.com";
   String data = "";
@@ -31,11 +30,11 @@ class FilmCatalogApp extends State<MyList> {
           for (var film in listeFilms) {
             String type = film['Type'];
             var color;
-            if (type == "series"){
+            if (type == "series") {
               color = "#a8dadc";
-            } else if (type == "game"){
+            } else if (type == "game") {
               color = "#f6bd60";
-            }else {
+            } else {
               color = "#fcd5ce";
             }
 
@@ -66,7 +65,6 @@ class FilmCatalogApp extends State<MyList> {
         } else {
           data = "Error in api request";
         }
-        print(data);
       } catch (ex) {
         data = "Internet error : " + ex.toString();
       } finally {
